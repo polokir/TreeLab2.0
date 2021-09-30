@@ -42,7 +42,7 @@ public:
 	bool checkEql(Node* cur, Node* cur2);
 	Node* getparent(Node* tree, Node* cur);
 	void deleteNodeByValue(float memory, int day, int hour, int minute);
-
+	void write(Node* current);
 
 
 };
@@ -64,7 +64,6 @@ BinTree::BinTree(float memory, int day, int hour, int minute) {
 BinTree::~BinTree() {
 	deleteBinTree();
 }
-
 
 BinTree::Node* BinTree::getroot() {
 	return root;
@@ -365,5 +364,23 @@ void BinTree::deleteNodeByValue(float memory, int day, int hour, int minute) {
 		else {
 
 		}
+	}
+}
+
+void BinTree::write(Node* current) {//Not tested
+	current = root;
+	FILE* fp;
+
+	if (fopen_s(&fp, "Tree", "wb") == NULL) {
+		return;
+	}
+	if (current != nullptr) {
+		fwrite((current), sizeof(BinTree), 1, fp);
+	}
+	else if (current->left == nullptr && current->right != nullptr) {
+		write(current->right);
+	}
+	else {
+		write(current->left);
 	}
 }
