@@ -26,8 +26,8 @@ public:
 	~BinTreeSearch();
 	void SetID(Node* cur);
 	void push_back(float memory, int day, int hour, int minute);
-	void output(Node* cur);
-	void output1(Node* Cur, int sp);
+	//void output(Node* cur);
+	//void output1(Node* Cur, int sp);
 	void SearchByValue(float memory, int day, int hour, int minute);
 	void printNode(Node* cur);
 	Node* deleteNode();

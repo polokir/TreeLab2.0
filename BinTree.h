@@ -4,6 +4,7 @@
 #define SIZE 10
 using namespace std;
 
+const char FILE_NAME[] = "tree.bin";
 
 class BinTree
 {
@@ -42,7 +43,9 @@ public:
 	bool checkEql(Node* cur, Node* cur2);
 	Node* getparent(Node* tree, Node* cur);
 	void deleteNodeByValue(float memory, int day, int hour, int minute);
-	void write(Node* current);
+	FILE* file;
+	void write(const Node&);
+	int get_file_size(FILE* f);
 
 
 };
@@ -80,8 +83,8 @@ void BinTree::push_back(float memory, int day, int hour, int minute) {
 	while (true) {
 		if ((cur->left != nullptr) && (cur->right != nullptr)) {
 			cout << "Choose node to add info" << endl;
-			cout << "Press 1 to add left-node" << endl;
-			cout << "Press 2 to add righr node" << endl;
+			cout << "Press 1 to add left node" << endl;
+			cout << "Press 2 to add right node" << endl;
 			cin >> cmd;
 			switch (cmd) {
 			case 1:
@@ -103,8 +106,9 @@ void BinTree::push_back(float memory, int day, int hour, int minute) {
 				switch (cmd) {
 				case 1:
 					cur->left = new Node(memory, day, hour, minute);
-					setID(cur->left);
 					count++;
+					setID(cur->left);
+					
 					return;
 				case 2:
 					cur = cur->right;
@@ -122,11 +126,12 @@ void BinTree::push_back(float memory, int day, int hour, int minute) {
 				switch (cmd) {
 				case 2:
 					cur->right = new Node(memory, day, hour, minute);
-					setID(cur->right);
 					count++;
+					setID(cur->right);
+				
 					return;
 				case 1:
-					cur = cur->right;
+					cur = cur->left;
 					break;
 				default:
 					cout << "ERROR" << endl;
@@ -141,13 +146,15 @@ void BinTree::push_back(float memory, int day, int hour, int minute) {
 				switch (cmd) {
 				case 1:
 					cur->left = new Node(memory, day, hour, minute);
-					setID(cur->left);
 					count++;
+					setID(cur->left);
+					
 					return;
 				case 2:
 					cur->right = new Node(memory, day, hour, minute);
-					setID(cur->right);
 					count++;
+					setID(cur->right);
+					
 					return;
 				default:
 					cout << "ERROR" << endl;
@@ -367,20 +374,15 @@ void BinTree::deleteNodeByValue(float memory, int day, int hour, int minute) {
 	}
 }
 
-void BinTree::write(Node* current) {//Not tested
-	current = root;
-	FILE* fp;
+void BinTree::write(const Node& cur) {
+	fopen_s(&file, FILE_NAME, "ab+");
+	fseek(file, 0, SEEK_END);
+	fwrite(&cur, sizeof(Node), 1, file);
+}
 
-	if (fopen_s(&fp, "Tree", "wb") == NULL) {
-		return;
-	}
-	if (current != nullptr) {
-		fwrite((current), sizeof(BinTree), 1, fp);
-	}
-	else if (current->left == nullptr && current->right != nullptr) {
-		write(current->right);
-	}
-	else {
-		write(current->left);
-	}
+int BinTree::get_file_size(FILE* f) {
+	if (file == nullptr)
+		return -1;
+	fseek(file, 0, SEEK_END);
+	return ftell(f) / sizeof(BinTree);
 }

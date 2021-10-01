@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="BinTree.h" />
     <ClInclude Include="BinTreeSearch.h" />
+    <ClInclude Include="FileCMD.h" />
     <ClInclude Include="Trees.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
