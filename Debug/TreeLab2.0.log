@@ -1,13 +1,15 @@
 ﻿  TreeLab2.0.cpp
-C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\Trees.h(134,21): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\Trees.h(169,20): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\Trees.h(179,24): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\TreeLab2.0.cpp(25,27): warning C4305: аргумент: усечение из "double" в "float"
-C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\TreeLab2.0.cpp(26,29): warning C4305: аргумент: усечение из "double" в "float"
-C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\TreeLab2.0.cpp(27,29): warning C4305: аргумент: усечение из "double" в "float"
-C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\TreeLab2.0.cpp(28,29): warning C4305: аргумент: усечение из "double" в "float"
-C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\TreeLab2.0.cpp(29,29): warning C4305: аргумент: усечение из "double" в "float"
-C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\TreeLab2.0.cpp(30,29): warning C4305: аргумент: усечение из "double" в "float"
-C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\BinTree.h(78): warning C4717: BinTree::to_count: рекурсия на всех путях выполнения, функция вызовет переполнение стека
-C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\BinTree.h(334): warning C4715: BinTree::getparent: значение возвращается не при всех путях выполнения
+C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\Trees.h(132,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\Trees.h(167,20): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\Trees.h(177,24): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\TreeLab2.0.cpp(42,36): warning C4305: аргумент: усечение из "double" в "float"
+C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\TreeLab2.0.cpp(43,32): warning C4305: аргумент: усечение из "double" в "float"
+C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\TreeLab2.0.cpp(44,32): warning C4305: аргумент: усечение из "double" в "float"
+C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\TreeLab2.0.cpp(45,33): warning C4305: аргумент: усечение из "double" в "float"
+C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\TreeLab2.0.cpp(47,32): warning C4305: аргумент: усечение из "double" в "float"
+C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\TreeLab2.0.cpp(48,32): warning C4305: аргумент: усечение из "double" в "float"
+C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\TreeLab2.0.cpp(51,41): warning C4305: аргумент: усечение из "double" в "float"
+C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\BinTreeSearch.h(208): warning C4715: BinTreeSearch::getParent: значение возвращается не при всех путях выполнения
+C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\BinTree.h(71): warning C4717: BinTree::to_count: рекурсия на всех путях выполнения, функция вызовет переполнение стека
+C:\Users\lolak\source\repos\TreeLab2.0\TreeLab2.0\BinTree.h(327): warning C4715: BinTree::getparent: значение возвращается не при всех путях выполнения
   TreeLab2.0.vcxproj -> C:\Users\lolak\source\repos\TreeLab2.0\Debug\TreeLab2.0.exe

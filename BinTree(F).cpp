@@ -1,47 +1,8 @@
 #include <iostream>
-
 using namespace std;
+#include "BinTree.h"
 
-const char FILE_NAME[] = "tree.bin";
 
-class BinTree
-{
-private:
-	class Node {
-	public:
-		float memory;
-		int day;
-		int hour;
-		int minute;
-		int index;
-		Node* left;
-		Node* right;
-		Node(float memory, int day, int hour, int minute);
-	};
-	Node* root;
-	int count;
-public:
-	BinTree(float memory, int day, int hour, int minute);
-	~BinTree();
-	void setID(Node* cur);
-	void deleteBinTree();
-	Node* getroot();
-	int to_count(Node* cur);
-	void push_back(float memory, int day, int hour, int minute);
-	void prefixoutput(Node* current);
-	void infixoutput(Node* cur);
-	void postfixoutput(Node* cur);
-	Node* deleteNode();
-	void output();
-	void symetricaloutput();
-	void reverseoutput();
-	bool check2Values(Node* cur, float memory, int day, int hour, int minute);
-	bool checkEql(Node* cur, float memory, int day, int hour, int minute);
-	bool check2Nodes(Node* tree1, Node* tree2);
-	bool checkEql(Node* cur, Node* cur2);
-	Node* getparent(Node* tree, Node* cur);
-	void deleteNodeByValue(float memory, int day, int hour, int minute);
-};
 
 BinTree::Node::Node(float memory, int day, int hour, int minute) {
 	this->memory = memory;
@@ -366,5 +327,6 @@ void BinTree::deleteNodeByValue(float memory, int day, int hour, int minute) {
 		}
 	}
 }
+
 
 

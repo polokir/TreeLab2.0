@@ -1,7 +1,4 @@
 #include <iostream>
-#include <vector>
-#include <string>
-#define SIZE 10
 using namespace std;
 
 
@@ -26,7 +23,7 @@ public:
 	~BinTreeSearch();
 	void SetID(Node* cur);
 	void push_back(float memory, int day, int hour, int minute);
-	//void output(Node* cur);
+	void output();
 	//void output1(Node* Cur, int sp);
 	void SearchByValue(float memory, int day, int hour, int minute);
 	void printNode(Node* cur);
@@ -36,7 +33,8 @@ public:
 	bool check_eql(Node* cur, float memory, int day, int hour, int minute);
 	bool check_nodes(Node* tree1, Node* tree2);
 	bool check_nodes_eql(Node* tree1, Node* tree2);
-
+	void deleteNodeByValue(float memory, int day, int hour, int minute);
+	void preorder(Node* node);
 };
 
 BinTreeSearch::Node::Node(float memory, int day, int hour, int minute) {
@@ -230,6 +228,111 @@ void BinTreeSearch::SearchByValue(float memory, int day, int hour, int minute) {
 			else {
 				cout << "Can't search nothing more." << endl;
 				return;
+			}
+		}
+	}
+}
+
+void BinTreeSearch::preorder(Node* cur) {
+	if (cur != nullptr) {
+		cout << cur->memory << " " << cur->day << " " << cur->hour << " " << cur->minute << endl;
+		preorder(cur->left);
+		preorder(cur->right);
+	}
+
+}
+
+void BinTreeSearch::output() {
+	Node* cur = root;
+	preorder(cur);
+}
+
+void BinTreeSearch::deleteNodeByValue(float memory, int day, int hour, int minute) {
+	Node* current = root;
+	Node* parent = getParent(root, current);
+
+	if (current->left == nullptr && current->right == nullptr) { 
+		if (!check_eql(current, memory, day, hour, minute))
+			return;
+		else {
+			if (parent->left == current) {
+				parent->left = nullptr;
+				return;
+			}
+			else if (parent->right == current) {
+				parent->right = nullptr;
+				return;
+			}
+		}
+	}
+	else if (current->left == nullptr || current->right == nullptr) { 
+		if (check_eql(current, memory, day, hour, minute)) {
+			if (current->left == nullptr) {
+				if (parent->left == nullptr)
+					parent->left = current->right;
+				else
+					parent->right = current->right;
+			}
+			else {
+				if (parent->left == current)
+					parent->left = current->left;
+				else
+					parent->right = current->left;
+			}
+		}
+		else {
+			if (current->left == nullptr) {
+				if (!check_val(current, memory, day, hour, minute))
+					current = current->right;
+				else return;
+			}
+			else if (current->right == nullptr) {
+				if (check_val(current, memory, day, hour, minute))
+					current = current->left;
+				else return;
+			}
+		}
+	}
+	else { 
+		while (true) {
+			parent = getParent(root, current);
+			Node* temp = current->left;
+			if (parent != nullptr) {
+				if ((current->left == nullptr && current->right == nullptr) && !check_eql(current, memory, day, hour, minute))
+					return;
+				else if (check_eql(current, memory, day, hour, minute)) {
+					if (parent->left == current) {
+						parent->left = temp;
+					}
+					else {
+						parent->right = temp;
+					}
+					while (temp->right)
+						temp = temp->right;
+					temp->right = current->right;
+					current = temp;
+				}
+				else if (!check_eql(current, memory, day, hour, minute)) {
+					if (current->left != nullptr && current->right != nullptr) {
+						if (check_val(current, memory, day, hour, minute))
+							current = current->right;
+						else current = current->left;
+					}
+					else if (current->left != nullptr) {
+						current = current->left;
+					}
+					else {
+						current = current->right;
+					}
+				}
+			}
+			else {
+				if (!check_eql(current, memory, day, hour, minute)) {
+					if (check_val(current, memory, day, hour, minute) && current->left != nullptr)
+						current = current->left;
+					else if (!check_val(current, memory, day, hour, minute) && current->right != nullptr)
+						current = current->right;
+				}
 			}
 		}
 	}

@@ -83,7 +83,6 @@ void Tree::append(float memory, int day, int hour, int minute) {
 		count++;
 		Tree::setId(newNode);
 		root->leaves.push_back(newNode);
-
 		cout << "Tree was empty, node is added to root" << endl;
 		return;
 	}
@@ -96,7 +95,6 @@ void Tree::append(float memory, int day, int hour, int minute) {
 			current->leaves.push_back(newNode);
 			return;
 		}
-		
 		cout << "\nChoose the leap or enter\"-1\"\n";
 		cin >> tmp;
 		if (tmp == -1) {
