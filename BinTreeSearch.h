@@ -160,7 +160,6 @@ void BinTreeSearch::push_back(float memory, int day, int hour, int minute) {
 	}
 }
 
-
 BinTreeSearch::Node* BinTreeSearch::deleteNode() {
 	Node* previous = root;
 	Node* current = root;

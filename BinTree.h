@@ -199,9 +199,9 @@ BinTree::Node* BinTree::deleteNode()
 	Node* previous = root;
 	Node* current = root;
 	if ((root->left == nullptr) && (root->right == nullptr)) {
-		std::cout << "Root hasn't got leaves" << std::endl;
+		cout << "Root hasn't got leaves" << endl;
 		root = nullptr;
-		std::cout << "Tree with root " << current << " is deleted." << std::endl;
+		cout << "Tree with root " << current << " is deleted." << endl;
 		return nullptr;
 	}
 	while (true) { 
@@ -214,7 +214,7 @@ BinTree::Node* BinTree::deleteNode()
 			current = current->right;
 		}
 		else {
-			std::cout << "Node " << current << " is deleted." << std::endl;
+			cout << "Node " << current << " is deleted." << endl;
 			if (previous->left == current)
 				previous->left = nullptr;
 			else
@@ -374,15 +374,5 @@ void BinTree::deleteNodeByValue(float memory, int day, int hour, int minute) {
 	}
 }
 
-void BinTree::write(const Node& cur) {
-	fopen_s(&file, FILE_NAME, "ab+");
-	fseek(file, 0, SEEK_END);
-	fwrite(&cur, sizeof(Node), 1, file);
-}
 
-int BinTree::get_file_size(FILE* f) {
-	if (file == nullptr)
-		return -1;
-	fseek(file, 0, SEEK_END);
-	return ftell(f) / sizeof(BinTree);
-}
+

@@ -22,14 +22,15 @@ public:
 	Node* getRoot();
 	void append(float memory, int day, int hour, int minute);
 	void setId(Node* current);
-	void outputTree(Node* current, int temp = 0);
+	void outputTree(Node* current,int tmp=0);
 	void defaultOutput();
 	Node* deleteNode();
 	void deleteTree(Node* current);
 
 	void printNode(Node* current);
 	void deleteNodeByIndex(int index);
-
+	void preord(Node* tree);
+	void postord(Node* cur);
 
 	Node* getParent(Node* current);
 
@@ -40,11 +41,13 @@ Tree::Node::Node(float memory, int day, int hour, int minute) {
 	this->day = day;
 	this->hour = hour;
 	this->minute = minute;
+	
+
 }
 
 Tree::Tree(float memory, int day, int hour, int minute) {
 	root = new Node(memory, day, hour, minute);
-	count = 1;
+	count++;
 	Tree::setId(root);
 }
 
@@ -56,20 +59,20 @@ Tree::Node* Tree::getRoot() {
 	return root;
 }
 
-void Tree::outputTree(Node* current, int temp) {
+void Tree::outputTree(Node* current,int tmp) {
 	cout << "[" << current->ID << "]:" << current->memory << "  " << current->day << " " << current->hour << " " << current->minute << endl;
-	temp++;
+	tmp++;
 	int len = current->leaves.size();
 	for (int i = 0; i < len; i++) {
-		for (int j = 0; j < temp; j++)
+		for (int j = 0; j < tmp; j++)
 			cout << '\t';
 		cout << i << ". ";
-		outputTree(current->leaves[i], temp);
+		outputTree(current->leaves[i]);
 	}
 }
 
 void Tree::defaultOutput() {
-	outputTree(root, 0);
+	outputTree(root);
 }
 
 void Tree::append(float memory, int day, int hour, int minute) {
@@ -81,7 +84,7 @@ void Tree::append(float memory, int day, int hour, int minute) {
 		Tree::setId(newNode);
 		root->leaves.push_back(newNode);
 
-		cout << "Tree is empty, node is added to root" << std::endl;
+		cout << "Tree was empty, node is added to root" << endl;
 		return;
 	}
 	while (true) {
@@ -93,10 +96,7 @@ void Tree::append(float memory, int day, int hour, int minute) {
 			current->leaves.push_back(newNode);
 			return;
 		}
-		cout << "Free leaves: ";
-		for (int i = 0; i < current->leaves.size(); i++) {
-			cout << i << ' ';
-		}
+		
 		cout << "\nChoose the leap or enter\"-1\"\n";
 		cin >> tmp;
 		if (tmp == -1) {
@@ -132,7 +132,7 @@ Tree::Node* Tree::deleteNode() {
 
 		cout << "Free leaves: ";
 		for (int i = 0; i < current->leaves.size(); i++)
-			std::cout << i << ' ';
+			cout << i << ' ';
 		cout << "\nChoose the leafe or press \"-1\"\n";
 		cin >> act;
 		if (act == -1) {
@@ -187,4 +187,22 @@ void Tree::deleteNodeByIndex(int index) {
 
 Tree::Node* Tree::getParent(Node* current) {
 	return nullptr;
+}
+
+void Tree::preord(Node* current) {
+	int len = current->leaves.size();
+	if (current) {
+		cout << "[" << current->ID << "]:" << current->memory << "  " << current->day << " " << current->hour << " " << current->minute << endl;
+		for (int i = 0; i < len; ++i)
+			preord(current->leaves[i]);
+	}
+}
+
+void Tree::postord(Node* current) {
+	int len = current->leaves.size();
+	if (current) {
+		for (int i = 0; i < len; ++i)
+			postord(current->leaves[i]);
+		cout << "[" << current->ID << "]:" << current->memory << "  " << current->day << " " << current->hour << " " << current->minute << endl;
+	}
 }
