@@ -24,15 +24,13 @@ public:
 	void setId(Node* current);
 	void outputTree(Node* current,int tmp=0);
 	void defaultOutput();
-	Node* deleteNode();
 	void deleteTree(Node* current);
-
-	void printNode(Node* current);
+	//void printNode(Node* current);
 	void deleteNodeByIndex(int index);
 	void preord(Node* tree);
 	void postord(Node* cur);
 
-	Node* getParent(Node* current);
+	
 
 
 };
@@ -95,7 +93,7 @@ void Tree::append(float memory, int day, int hour, int minute) {
 			current->leaves.push_back(newNode);
 			return;
 		}
-		cout << "\nChoose the leap or enter\"-1\"\n";
+		cout << "\enter\"-1\"\n";
 		cin >> tmp;
 		if (tmp == -1) {
 			Node* newNode = new Node(memory, day, hour, minute);
@@ -106,48 +104,6 @@ void Tree::append(float memory, int day, int hour, int minute) {
 		}
 		else
 			current = current->leaves[tmp];
-	}
-}
-
-Tree::Node* Tree::deleteNode() {
-	Node* current = root;
-	Node* previous = root;
-	int tmp = -1, act;
-
-	if (root->leaves.empty()) {
-		cout << "There is no leaves..." << endl;
-		return nullptr;
-	}
-
-	while (true) {
-		Tree::outputTree(current);
-		if (current->leaves.empty()) {
-			cout << "That node hasn't got leaves." << endl;
-			previous->leaves.erase(previous->leaves.begin() + tmp);
-			cout << "Node " << current << " is deleted" << endl;
-			return current;
-		}
-
-		cout << "Free leaves: ";
-		for (int i = 0; i < current->leaves.size(); i++)
-			cout << i << ' ';
-		cout << "\nChoose the leafe or press \"-1\"\n";
-		cin >> act;
-		if (act == -1) {
-			if (tmp == -1) {
-				cout << "You can't delete root" << endl;
-				continue;
-			}
-			previous->leaves.erase(previous->leaves.begin() + tmp);
-			cout << "Node " << current << " is deleted" << endl;
-			return current;
-
-		}
-		else {
-			tmp = act;
-			previous = current;
-			current = current->leaves[tmp];
-		}
 	}
 }
 
@@ -181,10 +137,6 @@ void Tree::deleteNodeByIndex(int index) {
 			}
 		}
 	}
-}
-
-Tree::Node* Tree::getParent(Node* current) {
-	return nullptr;
 }
 
 void Tree::preord(Node* current) {
