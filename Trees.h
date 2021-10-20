@@ -1,25 +1,26 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+template<typename T>
 class Tree {
 private:
 
 	class Node {
 	public:
-		int ID;
-		float memory;
-		int day;
-		int hour;
-		int minute;
+		T data;
 		vector<Node*> leaves;
-		Node(float memory, int day, int hour, int minute);
+		Node(T data) {
+			this->data = data;
+		}
 	};
 	int count;
 	Node* root;
 public:
-	Tree(float memory, int day, int hour, int minute);
+	Tree(T val);
 	~Tree();
-	Node* getRoot();
+	Node* getRoot() {
+		return root;
+	}
 	void append(float memory, int day, int hour, int minute);
 	void setId(Node* current);
 	void outputTree(Node* current,int tmp=0);
@@ -34,30 +35,20 @@ public:
 
 
 };
-Tree::Node::Node(float memory, int day, int hour, int minute) {
-	this->memory = memory;
-	this->day = day;
-	this->hour = hour;
-	this->minute = minute;
-	
 
-}
-
-Tree::Tree(float memory, int day, int hour, int minute) {
-	root = new Node(memory, day, hour, minute);
+template <typename T>
+Tree<T>::Tree(T val) {
+	root = new Node(val);
 	count++;
 	Tree::setId(root);
 }
-
-Tree::~Tree() {
+template <typename T>
+Tree<T>::Tree::~Tree() {
 	deleteTree(root);
 }
 
-Tree::Node* Tree::getRoot() {
-	return root;
-}
-
-void Tree::outputTree(Node* current,int tmp) {
+template <typename T>
+void Tree<T>::outputTree(Node* current,int tmp) {
 	cout << "[" << current->ID << "]:" << current->memory << "  " << current->day << " " << current->hour << " " << current->minute << endl;
 	tmp++;
 	int len = current->leaves.size();
@@ -69,11 +60,13 @@ void Tree::outputTree(Node* current,int tmp) {
 	}
 }
 
-void Tree::defaultOutput() {
+template <typename T>
+void Tree<T>::defaultOutput() {
 	outputTree(root);
 }
 
-void Tree::append(float memory, int day, int hour, int minute) {
+template <typename T>
+void Tree<T>::append(float memory, int day, int hour, int minute) {
 	Tree::Node* current = root;
 	int tmp;
 	if (root->leaves.empty()) {
@@ -107,18 +100,21 @@ void Tree::append(float memory, int day, int hour, int minute) {
 	}
 }
 
-void Tree::deleteTree(Tree::Node* current) {
+template <typename T>
+void Tree<T>::deleteTree(Tree::Node* current) {
 	for (auto& leaf : current->leaves)
 		deleteTree(leaf);
 	cout << "Node " << current << " is deleted" << endl;
 	delete current;
 }
 
-void Tree::setId(Tree::Node* current) {
+template <typename T>
+void Tree<T>::setId(Tree::Node* current) {
 	current->ID = count;
 }
 
-void Tree::deleteNodeByIndex(int index) {
+template <typename T>
+void Tree<T>::deleteNodeByIndex(int index) {
 	Node* current = root;
 	for (int i = 0; i < current->leaves.size(); i++) {
 		if (current->leaves[i]->ID == index) {
@@ -139,7 +135,8 @@ void Tree::deleteNodeByIndex(int index) {
 	}
 }
 
-void Tree::preord(Node* current) {
+template <typename T>
+void Tree<T>::preord(Node* current) {
 	int len = current->leaves.size();
 	if (current) {
 		cout << "[" << current->ID << "]:" << current->memory << "  " << current->day << " " << current->hour << " " << current->minute << endl;
@@ -148,7 +145,8 @@ void Tree::preord(Node* current) {
 	}
 }
 
-void Tree::postord(Node* current) {
+template <typename T>
+void Tree<T>::postord(Node* current) {
 	int len = current->leaves.size();
 	if (current) {
 		for (int i = 0; i < len; ++i)

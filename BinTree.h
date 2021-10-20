@@ -1,11 +1,10 @@
 #include <iostream>
-#include"Equality.h"
+#include "BaseTree.h"
 
 using namespace std;
 
 template <typename T>
-class BinaryTree
-{
+class BinaryTree {
 
 public:
 	BinaryTree(T v);
@@ -33,7 +32,7 @@ protected:
 	Node* root;
 	int treeSize;
 	void add(Node* node, T val);
-	bool lookup(Node* node, T val);
+	//bool lookup(Node* node, T val);
 	void printPreOrder(Node* node);
 	void printInOrder(Node* node);
 	void printPostOrder(Node* node);
@@ -124,6 +123,7 @@ void BinaryTree<T>::add(Node* node, T val) {
 				switch (cmd) {
 				case 2:
 					node->right = new Node(val);
+					treeSize++;
 					return;
 				case 1:
 					node = node->left;
@@ -141,9 +141,11 @@ void BinaryTree<T>::add(Node* node, T val) {
 				switch (cmd) {
 				case 1:
 					node->left = new Node(val);
+					treeSize++;
 					return;
 				case 2:
 					node->right = new Node(val);
+					treeSize++;
 					return;
 				default:
 					cout << "ERROR" << endl;
@@ -158,7 +160,7 @@ void BinaryTree<T>::add(Node* node, T val) {
 template <typename T>
 void BinaryTree<T>::printInOrder() {
 	printInOrder(this->root);
-	cout << std::endl;
+	cout << endl;
 }
 
 template <typename T>
@@ -179,7 +181,7 @@ void BinaryTree<T>::printPreOrder() {
 template <typename T>
 void BinaryTree<T>::printPreOrder( Node* node) {
 	if (node != NULL) {
-		std::cout << node->value << " | ";
+		cout << node->value << " | ";
 		printInOrder(node->left);
 		printInOrder(node->right);
 	}
@@ -188,7 +190,7 @@ void BinaryTree<T>::printPreOrder( Node* node) {
 template <typename T>
 void BinaryTree<T>::printPostOrder() {
 	printPostOrder(this->root);
-	std::cout << std::endl;
+	cout << endl;
 }
 
 template <typename T>
@@ -196,7 +198,7 @@ void BinaryTree<T>::printPostOrder( Node* node) {
 	if (node != NULL) {
 		printInOrder(node->left);
 		printInOrder(node->right);
-		std::cout << node->value << " | ";
+		cout << node->value << " | ";
 	}
 }
 
@@ -215,25 +217,7 @@ bool BinaryTree<T>::lookup(T val) {
 	return lookup(this->root, val);
 }
 
-template <typename T>
-bool BinaryTree<T>::lookup( Node* node, T val) {
-	if (node == NULL) {
-		return false;
-	}
-	else {
-		if (val == node->value) {
-			return true;
-		}
 
-		if (val > node->value) {
-			return lookup(node->right, val);
-		}
-		else {
-			return lookup(node->left, val);
-		}
-	}
-
-}
 
 template <typename T>
 void BinaryTree<T>::delete_by_value(T val) {
@@ -278,14 +262,3 @@ void BinaryTree<T>::delete_by_value(T val) {
 }
 
 
-template <typename T1>
-class BinaryTreeSearch::public BinaryTree<T>
-{
-
-public:
-
-
-protected:
-
-
-};

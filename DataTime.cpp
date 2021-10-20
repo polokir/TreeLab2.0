@@ -1,5 +1,6 @@
 ﻿#include "DataTime.h"
 #include<iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -78,22 +79,96 @@ int DateTime::shift_weekday() {
 void DateTime::cout_weekday() {
 	int shift = shift_weekday();
 	if (shift < 0) {
-		std::cout << "The date is not correct for now" << std::endl;
+		cout << "The date is not correct for now" << std::endl;
 		return;
 	}
 
 	shift = shift % 7;
 	switch (shift) {
-	case 1: std::cout << "Monday"; break;
-	case 2: std::cout << "Tuesday"; break;
-	case 3: std::cout << "Wednesday"; break;
-	case 4: std::cout << "Thursday"; break;
-	case 5: std::cout << "Friday"; break;
+	case 1: cout << "Monday"; break;
+	case 2: cout << "Tuesday"; break;
+	case 3: cout << "Wednesday"; break;
+	case 4: cout << "Thursday"; break;
+	case 5: cout << "Friday"; break;
 	case 6: cout << "Saturday"; break;
 	case 0: cout << "Sunday"; break;
 	default:
-		std::cout << "The date is not correct";
+		cout << "The date is not correct";
 		break;
 	}
-	std::cout << std::endl;
+	cout << endl;
 }
+
+
+
+bool operator == (const DateTime& a, const DateTime& b) {
+	if (a.year == b.year) {
+		if (a.month == b.month) {
+			if (a.day == b.day) {
+				if (a.hour == b.hour) {
+					if (a.minute == b.minute) {
+						if (a.second == b.second) {
+							return true;
+						}
+						else return false;
+					}
+					else return false;
+				}
+				else return false;
+			}
+			else return false;
+		}
+		else return false;
+	}
+	else return false;
+}
+
+bool operator < (const DateTime& a, const DateTime& b) {
+	if (a.year <= b.year) {
+		if (a.month <= b.month) {
+			if (a.day <= b.day) {
+				if (a.hour <= b.hour) {
+					if (a.minute <= b.minute) {
+						if (a.second <= b.second) {
+							return true;
+						}
+						else return false;
+					}
+					else return false;
+				}
+				else return false;
+			}
+			else return false;
+		}
+		else return false;
+	}
+	else return false;
+}
+
+bool operator > (const DateTime& a, const DateTime& b) {
+	if (a.year >= b.year) {
+		if (a.month >= b.month) {
+			if (a.day >= b.day) {
+				if (a.hour >= b.hour) {
+					if (a.minute >= b.minute) {
+						if (a.second >= b.second) {
+							return true;
+						}
+						else return false;
+					}
+					else return false;
+				}
+				else return false;
+			}
+			else return false;
+		}
+		else return false;
+	}
+	else return false;
+}
+
+bool operator != (const DateTime& a, const DateTime& b) {
+	return !(a == b);
+}
+
+

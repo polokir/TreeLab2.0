@@ -143,11 +143,11 @@
     <ClCompile Include="TreeLab2.0.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseTree.h" />
     <ClInclude Include="BinTree.h" />
     <ClInclude Include="BinTreeSearch.h" />
     <ClInclude Include="DataTime.h" />
-    <ClInclude Include="Equality.h" />
-    <ClInclude Include="FileCMD.h" />
+    <ClInclude Include="OperatorForVectors.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Trees.h" />
   </ItemGroup>

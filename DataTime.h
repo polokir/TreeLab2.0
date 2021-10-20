@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <sstream>
 
 #include "Random.h"
 
@@ -46,6 +47,19 @@ public:
 	int shift_weekday();
 	void cout_weekday();
 
+	friend bool operator ==(const DateTime& a, const DateTime& b);
+	friend bool operator !=(const DateTime& a, const DateTime& b);
+	friend bool operator < (const DateTime& a, const DateTime& b);
+	friend bool operator > (const DateTime& a, const DateTime& b);
+	/*friend ostream& operator << (ostream& os, const DateTime& d) {
+		os << d.year << ".";
+		os << d.month << ".";
+		os << d.day << ".";
+		os << d.hour << ".";
+		os << d.minute << ".";
+		os << d.second << ".";
+	}
+	*/
 };
 
 
@@ -53,3 +67,4 @@ inline DateTime Random(DateTime R) {
 	DateTime D;
 	return D;
 }
+
